@@ -18,7 +18,7 @@ cursor = conn.cursor()
 @app.route("/")
 def main():
     try:
-        query = '''select * from `Contacts`.`contact`;'''
+        query = "select * from `Contacts`.`contact`;"
         cursor.execute(query)
         alldata = cursor.fetchall()
         # print jsonify(data = alldata);
@@ -40,8 +40,8 @@ def addContact():
         skypeid = request.form['skypeid']
 
         if firstname and lastname and email and phone and skypeid:
-            query = '''INSERT INTO `Contacts`.`contact` (user_firstname, user_lastname, email, phone, skypeid)
-                          VALUES (%s,%s,%s,%d,%s)'''% ("'" + str(firstname) + "'", "'" + str(lastname) + "'", "'" +
+            query = """INSERT INTO `Contacts`.`contact` (user_firstname, user_lastname, email, phone, skypeid)
+                          VALUES (%s,%s,%s,%d,%s)"""% ("'" + str(firstname) + "'", "'" + str(lastname) + "'", "'" +
                                 str(email) + "'", int(phone), "'" + str(skypeid) + "'") + ';';
             cursor.execute(query)
             conn.commit()
